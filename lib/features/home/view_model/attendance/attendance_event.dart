@@ -3,7 +3,7 @@ abstract class AttendanceEvent {}
 class FetchAttendanceStatus extends AttendanceEvent {}
 
 class MarkAttendance extends AttendanceEvent {
-  final String status; // mark_in / mark_out
+  final String status;
   final double latitude;
   final double longitude;
 
@@ -13,3 +13,4 @@ class MarkAttendance extends AttendanceEvent {
     required this.longitude,
   });
 }
+class FetchRouteList extends AttendanceEvent {}

@@ -15,13 +15,14 @@ class AttendanceMarkButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AttendanceBloc, AttendanceState>(
       builder: (context, state) {
-        String shiftTime = "--";
-        String status = "--";
+       
 
-        if (state is AttendanceLoaded) {
-          shiftTime = state.data.attendance.shiftStartTime;
-          status = state.data.attendance.attendanceStatus;
-        }
+final bloc = context.read<AttendanceBloc>();
+final data = bloc.cachedStatus ?? 
+    (state is AttendanceStatusLoaded ? state.data : null);
+
+final shiftTime = data?.attendance.shiftStartTime ?? "--";
+final status = data?.attendance.attendanceStatus ?? "--";
 
         return Container(
           width: 345.w,
@@ -42,7 +43,6 @@ class AttendanceMarkButtonWidget extends StatelessWidget {
                 children: [
                   customText(
                     "Start Your Day!",
-                    fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
                     color: AppColors.white,
                   ),

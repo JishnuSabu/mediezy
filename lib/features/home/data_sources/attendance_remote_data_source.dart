@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:mediezy_task/core/constants/api_constants.dart';
 import 'package:mediezy_task/core/config/di/injection.dart';
 import 'package:mediezy_task/core/services/storage_services.dart';
+import 'package:mediezy_task/features/home/model/attendance_route_res_model.dart';
 import 'package:mediezy_task/features/home/model/attendance_status_res_model.dart';
 
 class AttendanceRemoteDatasource {
@@ -60,4 +61,22 @@ class AttendanceRemoteDatasource {
 
   throw Exception("Failed to mark attendance");
 }
+Future<AttendanceRouteModel> getRouteList() async {
+    final token = sl<StorageService>().token;
+  final response = await client.get(
+    Uri.parse("${ApiConstants.baseUrl}/attendance/route-list"),
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer $token", // if required
+    },
+  );
+  print("MARKe STATUS: ${response.statusCode}");
+  print("MARK BODY: ${response.body}");
+  if (response.statusCode == 200) {
+    return AttendanceRouteModel.fromJson(jsonDecode(response.body));
+  }
+
+  throw Exception("Failed to load route list");
+}
+
 }

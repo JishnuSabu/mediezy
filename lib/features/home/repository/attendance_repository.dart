@@ -1,3 +1,4 @@
+import 'package:mediezy_task/features/home/model/attendance_route_res_model.dart';
 import 'package:mediezy_task/features/home/model/attendance_status_res_model.dart';
 
 abstract class AttendanceRepository {
@@ -7,4 +8,6 @@ abstract class AttendanceRepository {
   required double latitude,
   required double longitude,
 });
+
+  Future<AttendanceRouteModel> getRouteList();
 }

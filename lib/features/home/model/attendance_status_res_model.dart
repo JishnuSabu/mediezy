@@ -35,8 +35,8 @@ class Attendance {
     return Attendance(
       attendanceStatus: json['attendance_status'],
       shiftStartTime: json['shift_start_time'],
-      markInTime: json['mark_in_time'],
-      markOutTime: json['mark_out_time'],
+      markInTime: json['mark_in_time']?.toString(),
+      markOutTime: json['mark_out_time']?.toString(),
     );
   }
 }

@@ -10,55 +10,53 @@ import 'package:mediezy_task/features/home/view_model/attendance/attendance_bloc
 import 'package:mediezy_task/features/home/view_model/attendance/attendance_event.dart';
 
 class AppRouter {
- static final router = GoRouter(
-  initialLocation: "/login", 
+  static final router = GoRouter(
+    initialLocation: "/login",
 
-  redirect: (context, state) {
-    final storage = sl<StorageService>();
-    final loggedIn = storage.isLoggedInSync;
+    redirect: (context, state) {
+      final storage = sl<StorageService>();
+      final loggedIn = storage.isLoggedInSync;
 
-    final loc = state.matchedLocation;
+      final loc = state.matchedLocation;
 
-    final isLogin = loc == "/login";
-    final isSignUp = loc == "/sign_up";
+      final isLogin = loc == "/login";
+      final isSignUp = loc == "/sign_up";
 
-    if (!loggedIn && !isLogin && !isSignUp) {
-      return "/login";
-    }
+      if (!loggedIn && !isLogin && !isSignUp) {
+        return "/login";
+      }
 
-    if (loggedIn && (isLogin || isSignUp)) {
-      return "/home";
-    }
+      if (loggedIn && (isLogin || isSignUp)) {
+        return "/home";
+      }
 
-    return null;
-  },
+      return null;
+    },
 
-  routes: [
-    GoRoute(
-      path: '/login',
-      builder: (context, state) => BlocProvider(
-        create: (_) => sl<AuthBloc>(),
-        child: LoginScreen(),
+    routes: [
+      GoRoute(
+        path: '/login',
+        builder: (context, state) =>
+            BlocProvider(create: (_) => sl<AuthBloc>(), child: LoginScreen()),
       ),
-    ),
 
-    GoRoute(
-      path: '/sign_up',
-      builder: (context, state) => BlocProvider(
-        create: (_) => sl<AuthBloc>(),
-        child: SignUpScreen(),
+      GoRoute(
+        path: '/sign_up',
+        builder: (context, state) =>
+            BlocProvider(create: (_) => sl<AuthBloc>(), child: SignUpScreen()),
       ),
-    ),
 
-  GoRoute(
-  path: "/home",
-  builder: (context, state) {
-    return BlocProvider(
-      create: (_) => sl<AttendanceBloc>()..add(FetchAttendanceStatus()),
-      child: UserDashBoardScreen(),
-    );
-  },
-),
-  ],
-);
+      GoRoute(
+        path: "/home",
+        builder: (context, state) {
+          return BlocProvider(
+            create: (_) => sl<AttendanceBloc>()
+              ..add(FetchAttendanceStatus())
+              ..add(FetchRouteList()),
+            child: UserDashBoardScreen(),
+          );
+        },
+      ),
+    ],
+  );
 }
