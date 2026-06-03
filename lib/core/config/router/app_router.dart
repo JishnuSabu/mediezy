@@ -1,106 +1,62 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:mediezy_task/core/config/di/injection.dart';
+import 'package:mediezy_task/core/services/storage_services.dart';
+import 'package:mediezy_task/features/auth/view/login_screen.dart';
+import 'package:mediezy_task/features/auth/view/sign_up_screen.dart';
+import 'package:mediezy_task/features/auth/view_model/auth_bloc.dart';
+import 'package:mediezy_task/features/home/view/user_dashboard_screen.dart';
 
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:mediezy_task/view/auth/login_screen.dart';
+class AppRouter {
+  static final router = GoRouter(
+    initialLocation: "/",
 
-// import '../di/injection.dart';
+    redirect: (context, state) {
+      final storage = sl<StorageService>();
 
+      final loggedIn = storage.isLoggedInSync;
 
-// import 'route_names.dart';
+      final isLogin = state.matchedLocation == "/login";
+      final isSignUp = state.matchedLocation == "/sign_up";
 
-// class AppRouter {
+      if (!loggedIn && !isLogin && !isSignUp) {
+        return "/login";
+      }
 
-//  static Route<dynamic>
-//  generateRoute(
+      if (loggedIn && isLogin) {
+        return "/home";
+      }
 
-//  RouteSettings settings
+      return null;
+    },
+    routes: [
+      GoRoute(
+        path: '/login',
+        builder: (context, state) {
+          return BlocProvider(
+            create: (_) => sl<AuthBloc>(),
+            child: LoginScreen(),
+          );
+        },
+      ),
 
-//  ){
+      GoRoute(
+        path: '/sign_up',
+        builder: (context, state) {
+          return BlocProvider(
+            create: (_) => sl<AuthBloc>(),
+            child: SignUpScreen(),
+          );
+        },
+      ),
 
-//    switch(
-//    settings.name
-//    ){
+      GoRoute(
+        path: "/home",
 
-//     //  case RouteNames.splash:
-
-//     //    return MaterialPageRoute(
-
-//     //      builder:(_)=>
-
-//     //      const SplashScreen(),
-
-//     //    );
-
-//      case RouteNames.login:
-
-//        return MaterialPageRoute(
-
-//          builder:(_)=>
-
-//          BlocProvider(
-
-//            create:(_)=>
-
-//            LoginBloc(
-
-//              sl.get()
-
-//            ),
-
-//            child:
-
-//            const LoginScreen(),
-
-//          ),
-
-//        );
-
-//     //  case RouteNames.signup:
-
-//     //    return MaterialPageRoute(
-
-//     //      builder:(_)=>
-
-//     //      const SignupScreen(),
-
-//     //    );
-
-//     //  case RouteNames.home:
-
-//     //    return MaterialPageRoute(
-
-//     //      builder:(_)=>
-
-//     //      const HomeScreen(),
-
-//     //    );
-
-//      default:
-
-//        return MaterialPageRoute(
-
-//          builder:(_)=>
-
-//          const Scaffold(
-
-//            body:
-
-//            Center(
-
-//              child:
-
-//              Text(
-//              "Route not found"
-//              ),
-
-//            ),
-
-//          ),
-
-//        );
-
-//    }
-
-//  }
-
-// }
+        builder: (context, state) {
+          return UserDashBoardScreen();
+        },
+      ),
+    ],
+  );
+}
