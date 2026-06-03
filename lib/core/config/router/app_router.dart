@@ -6,6 +6,8 @@ import 'package:mediezy_task/features/auth/view/login_screen.dart';
 import 'package:mediezy_task/features/auth/view/sign_up_screen.dart';
 import 'package:mediezy_task/features/auth/view_model/auth_bloc.dart';
 import 'package:mediezy_task/features/home/view/user_dashboard_screen.dart';
+import 'package:mediezy_task/features/home/view_model/attendance/attendance_bloc.dart';
+import 'package:mediezy_task/features/home/view_model/attendance/attendance_event.dart';
 
 class AppRouter {
  static final router = GoRouter(
@@ -48,10 +50,15 @@ class AppRouter {
       ),
     ),
 
-    GoRoute(
-      path: "/home",
-      builder: (context, state) => UserDashBoardScreen(),
-    ),
+  GoRoute(
+  path: "/home",
+  builder: (context, state) {
+    return BlocProvider(
+      create: (_) => sl<AttendanceBloc>()..add(FetchAttendanceStatus()),
+      child: UserDashBoardScreen(),
+    );
+  },
+),
   ],
 );
 }

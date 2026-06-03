@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediezy_task/core/config/di/injection.dart';
 import 'package:mediezy_task/core/services/storage_services.dart';
 import 'package:mediezy_task/features/auth/model/login_request_model.dart';
+import 'package:mediezy_task/features/auth/model/login_res_model.dart';
 import 'package:mediezy_task/features/auth/repository/auth_repository.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
@@ -15,25 +16,26 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   // ---------------- LOGIN ----------------
-  Future<void> _login(LoginPressed event, Emitter emit) async {
-    emit(AuthLoading());
+Future<void> _login(LoginPressed event, Emitter emit) async {
+  emit(AuthLoading());
 
-    try {
-      await repo.login(
-        LoginRequest(
-          mobile: event.mobile,
-          password: event.password,
-        ),
-      );
+  try {
+    final response = await repo.login(
+      LoginRequest(
+        mobile: event.mobile,
+        password: event.password,
+      ),
+    );
 
-      await sl<StorageService>().saveLogin();
+    final loginRes = LoginResponse.fromJson(response);
 
-      emit(AuthSuccess(message: "Login Success"));
-    } catch (e) {
-      emit(AuthError(e.toString()));
-    }
+    await sl<StorageService>().saveLoginData(loginRes);
+
+    emit(AuthSuccess(message: loginRes.message));
+  } catch (e) {
+    emit(AuthError(e.toString()));
   }
-
+}
   // ---------------- SIGNUP ----------------
   Future<void> _signup(SignupSubmitted event, Emitter emit) async {
     emit(AuthLoading());
