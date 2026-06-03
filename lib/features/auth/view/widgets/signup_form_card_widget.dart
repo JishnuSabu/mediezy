@@ -35,7 +35,7 @@ class SignUpFormCardWidget extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: AppColors.white,
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(8.w),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.2),

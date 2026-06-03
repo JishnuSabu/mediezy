@@ -1,7 +1,7 @@
-import 'package:mediezy_task/features/home/data_sources/attendance_remote_data_source.dart';
-import 'package:mediezy_task/features/home/model/attendance_route_res_model.dart';
-import 'package:mediezy_task/features/home/model/attendance_status_res_model.dart';
-import 'package:mediezy_task/features/home/repository/attendance_repository.dart';
+import 'package:mediezy_task/features/home/data_sources/attendance/attendance_remote_data_source.dart';
+import 'package:mediezy_task/features/home/model/attendance/attendance_route_res_model.dart';
+import 'package:mediezy_task/features/home/model/attendance/attendance_status_res_model.dart';
+import 'package:mediezy_task/features/home/repository/attendance/attendance_repository.dart';
 
 class AttendanceRepositoryImpl implements AttendanceRepository {
   final AttendanceRemoteDatasource ds;

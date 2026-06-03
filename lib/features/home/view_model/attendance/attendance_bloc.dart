@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mediezy_task/features/home/model/attendance_route_res_model.dart';
-import 'package:mediezy_task/features/home/model/attendance_status_res_model.dart';
-import 'package:mediezy_task/features/home/repository/attendance_repository.dart';
+import 'package:mediezy_task/features/home/model/attendance/attendance_route_res_model.dart';
+import 'package:mediezy_task/features/home/model/attendance/attendance_status_res_model.dart';
+import 'package:mediezy_task/features/home/repository/attendance/attendance_repository.dart';
 import 'package:mediezy_task/features/home/view_model/attendance/attendance_event.dart';
 import 'package:mediezy_task/features/home/view_model/attendance/attendance_state.dart';
 
@@ -28,26 +28,27 @@ emit(AttendanceStatusLoaded(res));
     }
   }
 
-  Future<void> markAttendance(MarkAttendance event, Emitter emit) async {
-    emit(AttendanceStatusLoading());
+Future<void> markAttendance(MarkAttendance event, Emitter emit) async {
+  emit(AttendanceStatusLoading());
 
-    try {
-     emit(AttendanceStatusLoading());
+  try {
+    await repo.markAttendance(
+      status: event.status,
+      latitude: event.latitude,
+      longitude: event.longitude,
+    );
 
-await repo.markAttendance(
-  status: event.status,
-  latitude: event.latitude,
-  longitude: event.longitude,
-);
+    final statusRes = await repo.getAttendanceStatus();
+    cachedStatus = statusRes;
 
-final res = await repo.getAttendanceStatus();
-cachedStatus = res;
+    final routeRes = await repo.getRouteList(); 
+    cachedRouteList = routeRes;
 
-emit(AttendanceStatusLoaded(res));
-    } catch (e) {
-      emit(AttendanceError(e.toString()));
-    }
+    emit(AttendanceStatusLoaded(statusRes));
+  } catch (e) {
+    emit(AttendanceError(e.toString()));
   }
+}
 
  Future<void> fetchRouteList(FetchRouteList event, Emitter emit) async {
   emit(AttendanceRouteLoading());

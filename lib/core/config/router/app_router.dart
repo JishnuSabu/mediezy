@@ -5,9 +5,13 @@ import 'package:mediezy_task/core/services/storage_services.dart';
 import 'package:mediezy_task/features/auth/view/login_screen.dart';
 import 'package:mediezy_task/features/auth/view/sign_up_screen.dart';
 import 'package:mediezy_task/features/auth/view_model/auth_bloc.dart';
+import 'package:mediezy_task/features/home/view/apply_leave_screen.dart';
+import 'package:mediezy_task/features/home/view/leave_list_screen.dart';
 import 'package:mediezy_task/features/home/view/user_dashboard_screen.dart';
 import 'package:mediezy_task/features/home/view_model/attendance/attendance_bloc.dart';
 import 'package:mediezy_task/features/home/view_model/attendance/attendance_event.dart';
+import 'package:mediezy_task/features/home/view_model/leave/leave_bloc.dart';
+import 'package:mediezy_task/features/home/view_model/leave/leave_event.dart';
 
 class AppRouter {
   static final router = GoRouter(
@@ -57,6 +61,36 @@ class AppRouter {
           );
         },
       ),
+      GoRoute(
+        path: "/apply_leave",
+        builder: (context, state) {
+          return BlocProvider(
+            create: (_) => sl<LeaveBloc>(),
+
+            child: ApplyLeaveScreen(),
+          );
+        },
+      ),
+   GoRoute(
+  path: "/leave_list",
+  builder: (context, state) {
+
+    final bloc = sl<LeaveBloc>();
+
+    bloc.add(
+      FetchLeaves(
+        employeeId: sl<StorageService>().userId!,
+        leaveType: "all",
+        month: "june",
+      ),
+    );
+
+    return BlocProvider.value(
+      value: bloc,
+      child: LeaveListScreen(),
+    );
+  },
+),
     ],
   );
 }

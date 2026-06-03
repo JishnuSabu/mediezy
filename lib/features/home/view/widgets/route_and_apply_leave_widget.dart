@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:mediezy_task/core/common_widgets/custom_container_widget.dart';
 
 class RouteAndApplyLeaveWidget extends StatelessWidget {
@@ -14,8 +15,13 @@ class RouteAndApplyLeaveWidget extends StatelessWidget {
                 isGradient: true,
                 img: "assets/images/route.png",
                 text: "Route",
+                onTap: () {
+                  context.push("/apply_leave");
+                },
               ),
-              CustomContainerWidget(img: "assets/images/calender.png",text: "Apply Leave",),
+              CustomContainerWidget(img: "assets/images/calender.png",text: "Apply Leave", onTap: () {
+                  context.push("/apply_leave");
+                },),
             ],
           );
   }

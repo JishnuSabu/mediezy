@@ -21,7 +21,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: 327.w,
-      height: 40,
+      height: 40.w,
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(30),

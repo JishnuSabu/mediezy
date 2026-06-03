@@ -11,27 +11,24 @@ class AttendanceHistoryListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AttendanceBloc, AttendanceState>(
-      builder: (context, state) {
-        if (state is AttendanceStatusLoading) {
-          final cached = context.read<AttendanceBloc>().cachedRouteList;
-          if (cached == null) return const SizedBox.shrink();
-          return _buildList(cached.routeList);
-        }
+  return BlocBuilder<AttendanceBloc, AttendanceState>(
+  builder: (context, state) {
+    final bloc = context.read<AttendanceBloc>();
+    final route = bloc.cachedRouteList?.routeList ?? [];
 
-        if (state is AttendanceInitial) return const SizedBox.shrink();
+    if (state is AttendanceRouteLoading && route.isEmpty) {
+      return const Center(child: CircularProgressIndicator());
+    }
 
-        if (state is AttendanceRouteLoading) {
-          return const Center(child: CircularProgressIndicator());
-        }
+    if (route.isEmpty) {
+      return SizedBox(
+        height: 130.w,
+        child: Center(child: customText("No attendance history found!S",color: AppColors.lightblue)));
+    }
 
-        if (state is AttendanceRouteLoaded) {
-          return _buildList(state.data.routeList);
-        }
-
-        return const SizedBox.shrink();
-      },
-    );
+    return _buildList(route);
+  },
+);
   }
 }
 

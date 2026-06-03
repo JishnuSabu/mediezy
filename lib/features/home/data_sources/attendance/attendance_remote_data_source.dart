@@ -3,8 +3,8 @@ import 'package:http/http.dart' as http;
 import 'package:mediezy_task/core/constants/api_constants.dart';
 import 'package:mediezy_task/core/config/di/injection.dart';
 import 'package:mediezy_task/core/services/storage_services.dart';
-import 'package:mediezy_task/features/home/model/attendance_route_res_model.dart';
-import 'package:mediezy_task/features/home/model/attendance_status_res_model.dart';
+import 'package:mediezy_task/features/home/model/attendance/attendance_route_res_model.dart';
+import 'package:mediezy_task/features/home/model/attendance/attendance_status_res_model.dart';
 
 class AttendanceRemoteDatasource {
   final http.Client client;
@@ -70,8 +70,8 @@ Future<AttendanceRouteModel> getRouteList() async {
       "Authorization": "Bearer $token", // if required
     },
   );
-  print("MARKe STATUS: ${response.statusCode}");
-  print("MARK BODY: ${response.body}");
+  print("MARKed STATUS: ${response.statusCode}");
+  print("MARKd BODY: ${response.body}");
   if (response.statusCode == 200) {
     return AttendanceRouteModel.fromJson(jsonDecode(response.body));
   }

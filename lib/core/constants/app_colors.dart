@@ -20,4 +20,6 @@ class AppColors {
   static const Color black = Color(0xFF000000);
 
   static const Color lightwhite = Color(0xFFF0F0F0);
+
+    static const Color yellow = Color(0xFFD4C200);
 }

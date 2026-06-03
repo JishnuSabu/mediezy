@@ -1,10 +1,14 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:mediezy_task/core/services/storage_services.dart';
-import 'package:mediezy_task/features/home/data_sources/attendance_remote_data_source.dart';
-import 'package:mediezy_task/features/home/repository/attendance_repository.dart';
-import 'package:mediezy_task/features/home/repository/attendance_repostory_impl.dart';
+import 'package:mediezy_task/features/home/data_sources/attendance/attendance_remote_data_source.dart';
+import 'package:mediezy_task/features/home/data_sources/leave/leave_remote_data_source.dart';
+import 'package:mediezy_task/features/home/repository/attendance/attendance_repository.dart';
+import 'package:mediezy_task/features/home/repository/attendance/attendance_repostory_impl.dart';
+import 'package:mediezy_task/features/home/repository/leave/leave_repository.dart';
+import 'package:mediezy_task/features/home/repository/leave/leave_repository_impl.dart';
 import 'package:mediezy_task/features/home/view_model/attendance/attendance_bloc.dart';
+import 'package:mediezy_task/features/home/view_model/leave/leave_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:mediezy_task/core/network/api_client.dart';
@@ -37,4 +41,10 @@ Future<void> init() async {
   );
 
   sl.registerFactory(() => AttendanceBloc(sl()));
+
+  sl.registerLazySingleton(() => LeaveRemoteDatasource(sl()));
+
+  sl.registerLazySingleton<LeaveRepository>(() => LeaveRepositoryImpl(sl()));
+
+  sl.registerFactory(() => LeaveBloc(sl()));
 }
