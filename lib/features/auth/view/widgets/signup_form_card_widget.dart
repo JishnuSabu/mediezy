@@ -5,7 +5,28 @@ import 'package:mediezy_task/core/common_widgets/custom_textfield.dart';
 import 'package:mediezy_task/core/constants/app_colors.dart';
 
 class SignUpFormCardWidget extends StatelessWidget {
-  const SignUpFormCardWidget({super.key});
+  final TextEditingController firstNameCtr;
+  final TextEditingController lastNameCtr;
+  final TextEditingController emailCtr;
+  final TextEditingController addressCtr;
+  final TextEditingController dobCtr;
+  final TextEditingController mobileCtr;
+  final TextEditingController locationCtr;
+  final TextEditingController dojCtr;
+  final TextEditingController passwordCtr;
+
+  const SignUpFormCardWidget({
+    super.key,
+    required this.firstNameCtr,
+    required this.lastNameCtr,
+    required this.emailCtr,
+    required this.addressCtr,
+    required this.dobCtr,
+    required this.mobileCtr,
+    required this.locationCtr,
+    required this.dojCtr,
+    required this.passwordCtr,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +52,7 @@ class SignUpFormCardWidget extends StatelessWidget {
             children: [
               customText("First Name"),
               CustomTextField(
-                controller: TextEditingController(),
+                controller: firstNameCtr,
                 hint: "Enter First Name",
                 hintTextClr: AppColors.lightwhite,
                 borderClr: AppColors.lightGrey2,
@@ -40,7 +61,7 @@ class SignUpFormCardWidget extends StatelessWidget {
               SizedBox(height: 7.w),
               customText("Last Name"),
               CustomTextField(
-                controller: TextEditingController(),
+                controller: lastNameCtr,
                 hint: "Enter Last Name",
                 hintTextClr: AppColors.lightwhite,
                 borderClr: AppColors.lightGrey2,
@@ -49,7 +70,7 @@ class SignUpFormCardWidget extends StatelessWidget {
               SizedBox(height: 7.w),
               customText("Email"),
               CustomTextField(
-                controller: TextEditingController(),
+                controller: emailCtr,
                 hint: "Enter Email",
                 hintTextClr: AppColors.lightwhite,
                 borderClr: AppColors.lightGrey2,
@@ -58,7 +79,7 @@ class SignUpFormCardWidget extends StatelessWidget {
               SizedBox(height: 7.w),
               customText("Address"),
               CustomTextField(
-                controller: TextEditingController(),
+                controller: addressCtr,
                 hint: "Enter Address",
                 hintTextClr: AppColors.lightwhite,
                 borderClr: AppColors.lightGrey2,
@@ -67,7 +88,7 @@ class SignUpFormCardWidget extends StatelessWidget {
               SizedBox(height: 7.w),
               customText("DOB"),
               CustomTextField(
-                controller: TextEditingController(),
+                controller: dobCtr,
                 hint: "Enter DOB",
                 hintTextClr: AppColors.lightwhite,
                 borderClr: AppColors.lightGrey2,
@@ -76,7 +97,7 @@ class SignUpFormCardWidget extends StatelessWidget {
               SizedBox(height: 7.w),
               customText("Mobile Number"),
               CustomTextField(
-                controller: TextEditingController(),
+                controller: mobileCtr,
                 hint: "Enter Mobile Number",
                 hintTextClr: AppColors.lightwhite,
                 borderClr: AppColors.lightGrey2,
@@ -85,7 +106,7 @@ class SignUpFormCardWidget extends StatelessWidget {
               SizedBox(height: 7.w),
               customText("Location"),
               CustomTextField(
-                controller: TextEditingController(),
+                controller: locationCtr,
                 hint: "Enter Location",
                 hintTextClr: AppColors.lightwhite,
                 borderClr: AppColors.lightGrey2,
@@ -94,7 +115,7 @@ class SignUpFormCardWidget extends StatelessWidget {
               SizedBox(height: 7.w),
               customText("DOJ"),
               CustomTextField(
-                controller: TextEditingController(),
+                controller: dojCtr,
                 hint: "Enter DOJ",
                 hintTextClr: AppColors.lightwhite,
                 borderClr: AppColors.lightGrey2,
@@ -103,7 +124,7 @@ class SignUpFormCardWidget extends StatelessWidget {
               SizedBox(height: 7.w),
               customText("Password"),
               CustomTextField(
-                controller: TextEditingController(),
+                controller: passwordCtr,
                 hint: "Enter Password",
                 hintTextClr: AppColors.lightwhite,
                 borderClr: AppColors.lightGrey2,

@@ -4,7 +4,7 @@ import 'package:mediezy_task/core/constants/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
   final String title;
-  final VoidCallback onTap;
+ final VoidCallback? onTap;
   final bool isGradient;
   final bool isOutlined;
    final double? fontSize;

@@ -1,3 +1,5 @@
+import 'package:mediezy_task/features/auth/model/sign_up_request_model.dart';
+
 abstract class AuthEvent{}
 
 class LoginPressed
@@ -10,4 +12,10 @@ extends AuthEvent{
  this.mobile,
  this.password);
 
+}
+
+class SignupSubmitted extends AuthEvent {
+  final SignUpRequest request;
+
+  SignupSubmitted(this.request);
 }
