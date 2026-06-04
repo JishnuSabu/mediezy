@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mediezy_task/core/common_widgets/custom_bottom_divider.dart';
 import 'package:mediezy_task/core/common_widgets/custom_text.dart';
 import 'package:mediezy_task/core/config/di/injection.dart';
 import 'package:mediezy_task/core/services/storage_services.dart';
@@ -30,7 +29,7 @@ class UserDashBoardScreen extends StatelessWidget {
                       height: 65.w,
                       width: 65.w,
                     ),
-                
+
                     customText(
                       "Hi ${userDetails.userName}",
                       fontSize: 22.sp,
@@ -58,14 +57,12 @@ class UserDashBoardScreen extends StatelessWidget {
                     RouteAndApplyLeaveWidget(),
                     SizedBox(height: 25.w),
                     AttendanceHistorySection(),
-                    
                   ],
                 ),
               ),
             ),
-            
-                  const CustomBottomDivider(), 
-                  SizedBox(height: 8.w,)
+
+            SizedBox(height: 8.w),
           ],
         ),
       ),

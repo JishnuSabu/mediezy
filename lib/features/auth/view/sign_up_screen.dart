@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mediezy_task/core/common_widgets/custom_app_bar.dart';
+import 'package:mediezy_task/core/common_widgets/custom_bottom_divider.dart';
 import 'package:mediezy_task/core/common_widgets/custom_button.dart';
 import 'package:mediezy_task/core/constants/app_colors.dart';
 import 'package:mediezy_task/features/auth/model/sign_up_request_model.dart';

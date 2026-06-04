@@ -7,6 +7,8 @@ import 'package:mediezy_task/features/auth/view/sign_up_screen.dart';
 import 'package:mediezy_task/features/auth/view_model/auth_bloc.dart';
 import 'package:mediezy_task/features/home/view/apply_leave_screen.dart';
 import 'package:mediezy_task/features/home/view/leave_list_screen.dart';
+import 'package:mediezy_task/features/home/view/my_route_map_screen.dart';
+import 'package:mediezy_task/features/home/view/my_route_screen.dart';
 import 'package:mediezy_task/features/home/view/user_dashboard_screen.dart';
 import 'package:mediezy_task/features/home/view_model/attendance/attendance_bloc.dart';
 import 'package:mediezy_task/features/home/view_model/attendance/attendance_event.dart';
@@ -71,26 +73,33 @@ class AppRouter {
           );
         },
       ),
-   GoRoute(
-  path: "/leave_list",
-  builder: (context, state) {
+      GoRoute(
+        path: "/leave_list",
+        builder: (context, state) {
+          final bloc = sl<LeaveBloc>();
 
-    final bloc = sl<LeaveBloc>();
+          bloc.add(
+            FetchLeaves(
+              employeeId: sl<StorageService>().userId!,
+              leaveType: "all",
+              month: "june",
+            ),
+          );
 
-    bloc.add(
-      FetchLeaves(
-        employeeId: sl<StorageService>().userId!,
-        leaveType: "all",
-        month: "june",
+          return BlocProvider.value(value: bloc, child: LeaveListScreen());
+        },
       ),
-    );
 
-    return BlocProvider.value(
-      value: bloc,
-      child: LeaveListScreen(),
-    );
-  },
-),
+      GoRoute(
+        path: "/my_route",
+        builder: (context, state) {
+          final bloc = sl<AttendanceBloc>()..add(FetchRouteList());
+
+          return BlocProvider.value(value: bloc, child: MyRouteScreen());
+        },
+      ),
+
+     
     ],
   );
 }

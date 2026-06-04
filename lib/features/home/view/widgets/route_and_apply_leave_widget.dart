@@ -16,7 +16,7 @@ class RouteAndApplyLeaveWidget extends StatelessWidget {
                 img: "assets/images/route.png",
                 text: "Route",
                 onTap: () {
-                  context.push("/apply_leave");
+                  context.push("/my_route");
                 },
               ),
               CustomContainerWidget(img: "assets/images/calender.png",text: "Apply Leave", onTap: () {

@@ -136,7 +136,6 @@ class ApplyLeaveScreen extends StatelessWidget {
                   onTap: () {context.push("/leave_list");},
                 ),
                 SizedBox(height: 45.w),
-                const CustomBottomDivider(),
                 SizedBox(height: 8.w),
               ],
             ),

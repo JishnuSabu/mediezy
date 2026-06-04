@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key,  this.showText = false});
+  const CustomAppBar({super.key,  this.showText = false, this.text});
 final bool showText;
+final String? text;
   @override
   Widget build(BuildContext context) {
     return   Padding(
@@ -16,7 +17,7 @@ final bool showText;
                   ),
                   SizedBox(width: 5.w),
                 if(showText)  Text(
-                    "Create Account",
+                 text ??   "Create Account",
                     style: TextStyle(
                       fontSize: 18.sp,
                       fontWeight: FontWeight.bold,
