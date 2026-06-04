@@ -47,35 +47,38 @@ class LeaveListTabBarWidget extends StatelessWidget {
                       ],
                     ),
 
-                    child: TabBar(
-                      dividerColor: Colors.transparent,
-                      indicator: BoxDecoration(
-                        gradient: const LinearGradient(
-                          colors: [Color(0xFF042222), Color(0xFF03624C)],
+                    child: SizedBox(
+                      height: 40.w,
+                      child: TabBar(
+                        dividerColor: Colors.transparent,
+                        indicator: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [Color(0xFF042222), Color(0xFF03624C)],
+                          ),
+                          borderRadius: BorderRadius.circular(30),
                         ),
-                        borderRadius: BorderRadius.circular(30),
+                        indicatorSize: TabBarIndicatorSize.tab,
+                        labelColor: AppColors.white,
+                        unselectedLabelColor: Colors.black87,
+                        labelStyle: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        unselectedLabelStyle: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      
+                        tabs: const [
+                          Tab(text: "All"),
+                      
+                          Tab(text: "Pending"),
+                      
+                          Tab(text: "Approved"),
+                      
+                          Tab(text: "Rejected"),
+                        ],
                       ),
-                      indicatorSize: TabBarIndicatorSize.tab,
-                      labelColor: AppColors.white,
-                      unselectedLabelColor: Colors.black87,
-                      labelStyle: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                      unselectedLabelStyle: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w500,
-                      ),
-
-                      tabs: const [
-                        Tab(text: "All"),
-
-                        Tab(text: "Pending"),
-
-                        Tab(text: "Approved"),
-
-                        Tab(text: "Rejected"),
-                      ],
                     ),
                   ),
 
@@ -91,9 +94,7 @@ class LeaveListTabBarWidget extends StatelessWidget {
                         Expanded(
                           child: BlocBuilder<LeaveBloc, LeaveState>(
                             builder: (context, state) {
-                              if (state is LeaveListLoading) {
-                        
-                              }
+                              if (state is LeaveListLoading) {}
 
                               int count = 0;
 
@@ -144,9 +145,11 @@ class LeaveListTabBarWidget extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(30),
                                 ),
 
-                                child: customText("Your Leave $count",
-                fontSize: 12.sp,
-                fontWeight: FontWeight.w700,),
+                                child: customText(
+                                  "Your Leave $count",
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w700,
+                                ),
                               );
                             },
                           ),

@@ -7,7 +7,6 @@ import 'package:mediezy_task/features/auth/view/sign_up_screen.dart';
 import 'package:mediezy_task/features/auth/view_model/auth_bloc.dart';
 import 'package:mediezy_task/features/home/view/apply_leave_screen.dart';
 import 'package:mediezy_task/features/home/view/leave_list_screen.dart';
-import 'package:mediezy_task/features/home/view/my_route_map_screen.dart';
 import 'package:mediezy_task/features/home/view/my_route_screen.dart';
 import 'package:mediezy_task/features/home/view/user_dashboard_screen.dart';
 import 'package:mediezy_task/features/home/view_model/attendance/attendance_bloc.dart';
@@ -93,7 +92,7 @@ class AppRouter {
       GoRoute(
         path: "/my_route",
         builder: (context, state) {
-          final bloc = sl<AttendanceBloc>()..add(FetchRouteList());
+          final bloc = sl<AttendanceBloc>()..add(FetchRouteList())..add(FetchAttendanceStatus());
 
           return BlocProvider.value(value: bloc, child: MyRouteScreen());
         },

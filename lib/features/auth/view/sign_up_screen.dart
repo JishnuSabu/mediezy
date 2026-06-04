@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mediezy_task/core/common_widgets/custom_app_bar.dart';
-import 'package:mediezy_task/core/common_widgets/custom_bottom_divider.dart';
 import 'package:mediezy_task/core/common_widgets/custom_button.dart';
 import 'package:mediezy_task/core/constants/app_colors.dart';
+import 'package:mediezy_task/core/utils/validations.dart';
 import 'package:mediezy_task/features/auth/model/sign_up_request_model.dart';
 import 'package:mediezy_task/features/auth/view/widgets/signup_form_card_widget.dart';
 import 'package:mediezy_task/features/auth/view_model/auth_bloc.dart';
@@ -72,34 +72,22 @@ class SignUpScreen extends StatelessWidget {
                     onTap: state is AuthLoading
                         ? null
                         : () {
-                            final bloc = context.read<AuthBloc>();
-
-                            final firstNameError = bloc.validateName(
+                            final firstNameError = validateName(
                               firstNameCtr.text,
                             );
-                            final lastNameError = bloc.validateName(
+                            final lastNameError = validateName(
                               lastNameCtr.text,
                             );
-                            final emailError = bloc.validateEmail(
-                              emailCtr.text,
-                            );
-                            final mobileError = bloc.validateMobile(
-                              mobileCtr.text,
-                            );
-                            final passwordError = bloc.validatePassword(
+                            final emailError = validateEmail(emailCtr.text);
+                            final mobileError = validateMobile(mobileCtr.text);
+                            final passwordError = validatePassword(
                               passwordCtr.text,
                             );
-                            final addressError = bloc.validateAddress(
+                            final addressError = validateAddress(
                               addressCtr.text,
                             );
-                            final dobError = bloc.validateDate(
-                              dobCtr.text,
-                              "DOB",
-                            );
-                            final dojError = bloc.validateDate(
-                              dojCtr.text,
-                              "DOJ",
-                            );
+                            final dobError = validateDate(dobCtr.text, "DOB");
+                            final dojError = validateDate(dojCtr.text, "DOJ");
 
                             if (firstNameError != null ||
                                 lastNameError != null ||

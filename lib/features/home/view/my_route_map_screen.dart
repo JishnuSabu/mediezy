@@ -92,8 +92,8 @@ class _MyRouteMapScreenState extends State<MyRouteMapScreen> {
             },
             myLocationEnabled: true,
             zoomControlsEnabled: false,
-            mapToolbarEnabled: false,   // hides the Google Maps toolbar
-            compassEnabled: false,      // cleaner look
+            mapToolbarEnabled: false, // hides the Google Maps toolbar
+            compassEnabled: false, // cleaner look
           ),
 
           SafeArea(

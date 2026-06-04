@@ -46,29 +46,32 @@ class LeaveTabWidget extends StatelessWidget {
               ],
               borderRadius: BorderRadius.circular(30),
             ),
-            child: TabBar(
-              dividerColor: Colors.transparent,
-              indicator: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF042222), Color(0xFF03624C)],
+            child: SizedBox(
+              height: 40.w,
+              child: TabBar(
+                dividerColor: Colors.transparent,
+                indicator: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFF042222), Color(0xFF03624C)],
+                  ),
+                  borderRadius: BorderRadius.circular(30),
                 ),
-                borderRadius: BorderRadius.circular(30),
+                indicatorSize: TabBarIndicatorSize.tab,
+                labelColor: Colors.white,
+                unselectedLabelColor: Colors.black87,
+                labelStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w600,
+                ),
+                unselectedLabelStyle: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w500,
+                ),
+                tabs: const [
+                  Tab(height: 40, text: "Full Day"),
+                  Tab(height: 40, text: "Half Day"),
+                ],
               ),
-              indicatorSize: TabBarIndicatorSize.tab,
-              labelColor: Colors.white,
-              unselectedLabelColor: Colors.black87,
-              labelStyle: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w600,
-              ),
-              unselectedLabelStyle: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w500,
-              ),
-              tabs: const [
-                Tab(height: 40, text: "Full Day"),
-                Tab(height: 40, text: "Half Day"),
-              ],
             ),
           ),
 

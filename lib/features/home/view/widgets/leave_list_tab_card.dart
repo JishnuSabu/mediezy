@@ -10,14 +10,16 @@ import 'package:mediezy_task/features/home/view_model/leave/leave_state.dart';
 class LeaveListTabCard extends StatelessWidget {
   final int filter;
 
-  const LeaveListTabCard({required this.filter});
+  const LeaveListTabCard({super.key, required this.filter});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LeaveBloc, LeaveState>(
       builder: (context, state) {
         if (state is LeaveListLoading) {
-          return Center(child: CircularProgressIndicator(color:AppColors.primaryGreen ,));
+          return Center(
+            child: CircularProgressIndicator(color: AppColors.primaryGreen),
+          );
         }
 
         if (state is LeaveListLoaded) {
@@ -85,13 +87,44 @@ class LeaveListTabCard extends StatelessWidget {
                           fontSize: 12.sp,
                           color: AppColors.yellow,
                         ),
+                        SizedBox(height: 5.w),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            leaveStatusWidget(
+                              "assets/images/tick.png",
+                              " Create",
+                            ),
+                            Expanded(
+                              child: Image.asset(
+                                "assets/images/Line 2.png",
+                                height: 15.97.w,
+                              ),
+                            ),
+                            leaveStatusWidget(
+                              "assets/images/tick.png",
+                              " Review",
+                            ),
+                            Expanded(
+                              child: Image.asset(
+                                "assets/images/Line 2.png",
+                                height: 15.97.w,
+                              ),
+                            ),
 
-                        Text(
-                          item.status == 0
-                              ? "Pending"
-                              : item.status == 1
-                              ? "Approved"
-                              : "Rejected",
+                            leaveStatusWidget(
+                              item.status == 0
+                                  ? "assets/images/pending.png"
+                                  : item.status == 1
+                                  ? "assets/images/tick.png"
+                                  : "assets/images/Rejected.png",
+                              item.status == 0
+                                  ? " Pending"
+                                  : item.status == 1
+                                  ? " Approved"
+                                  : " Rejected",
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -106,4 +139,13 @@ class LeaveListTabCard extends StatelessWidget {
       },
     );
   }
+}
+
+Widget leaveStatusWidget(String img, String status) {
+  return Row(
+    children: [
+      Image.asset(img, height: 15.97.w),
+      customText(status, fontWeight: FontWeight.w800),
+    ],
+  );
 }

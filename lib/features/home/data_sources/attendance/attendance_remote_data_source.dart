@@ -22,9 +22,6 @@ class AttendanceRemoteDatasource {
       },
     );
 
-    print("STATUS CODE: ${response.statusCode}");
-    print("BODY: ${response.body}");
-
     if (response.statusCode == 200) {
       return AttendanceStatusResponse.fromJson(jsonDecode(response.body));
     }
@@ -52,8 +49,6 @@ class AttendanceRemoteDatasource {
     }),
   );
 
-  print("MARK STATUS: ${response.statusCode}");
-  print("MARK BODY: ${response.body}");
 
   if (response.statusCode == 200 || response.statusCode == 201) {
     return jsonDecode(response.body);
@@ -70,8 +65,6 @@ Future<AttendanceRouteModel> getRouteList() async {
       "Authorization": "Bearer $token", // if required
     },
   );
-  print("MARKed STATUS: ${response.statusCode}");
-  print("MARKd BODY: ${response.body}");
   if (response.statusCode == 200) {
     return AttendanceRouteModel.fromJson(jsonDecode(response.body));
   }

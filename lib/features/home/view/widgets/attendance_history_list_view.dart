@@ -54,9 +54,7 @@ Widget _buildList(List routeList) {
           final data =
               bloc.cachedStatus ??
               (state is AttendanceStatusLoaded ? state.data : null);
-
           final status = data?.attendance.attendanceStatus ?? "--";
-
           return GestureDetector(
             onTap: () {
               if (status == "marked_out") {

@@ -1,10 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mediezy_task/features/home/model/leave/leave_list_res_model.dart';
-
 import 'package:mediezy_task/features/home/model/leave/leave_res_model.dart';
-
 import 'package:mediezy_task/features/home/repository/leave/leave_repository.dart';
-
 import 'leave_event.dart';
 import 'leave_state.dart';
 
@@ -39,7 +36,6 @@ class LeaveBloc extends Bloc<LeaveEvent, LeaveState> {
 
   Future<void> _fetchLeaves(FetchLeaves event, Emitter<LeaveState> emit) async {
     emit(LeaveListLoading());
-print("FETCH STARTED");
     try {
       final res = await repo.getLeaves(
         employeeId: event.employeeId,

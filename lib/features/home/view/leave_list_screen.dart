@@ -29,7 +29,6 @@ class LeaveListScreen extends StatelessWidget {
                       fontWeight: FontWeight.w900,
                     ),
                     SizedBox(height: 20.h),
-
                     Expanded(child: LeaveListTabBarWidget()),
                   ],
                 ),

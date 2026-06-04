@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mediezy_task/core/common_widgets/custom_text.dart';
 import 'package:mediezy_task/core/constants/app_colors.dart';
-import 'package:mediezy_task/core/utils/location_service.dart';
+import 'package:mediezy_task/core/services/location_service.dart';
 import 'package:mediezy_task/features/home/view_model/attendance/attendance_bloc.dart';
 import 'package:mediezy_task/features/home/view_model/attendance/attendance_event.dart';
 import 'package:mediezy_task/features/home/view_model/attendance/attendance_state.dart';

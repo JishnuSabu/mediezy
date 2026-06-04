@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:mediezy_task/core/common_widgets/custom_bottom_divider.dart';
 import 'package:mediezy_task/core/constants/app_colors.dart';
 import 'package:mediezy_task/core/common_widgets/custom_button.dart';
 import 'package:mediezy_task/core/common_widgets/custom_textfield.dart';
+import 'package:mediezy_task/core/utils/validations.dart';
 import 'package:mediezy_task/features/auth/view_model/auth_bloc.dart';
 import 'package:mediezy_task/features/auth/view_model/auth_event.dart';
 import 'package:mediezy_task/features/auth/view_model/auth_state.dart';
@@ -64,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                           hintTextClr: AppColors.textClr,
                           borderRadius: BorderRadius.circular(30),
                           validator: (value) {
-                            return context.read<AuthBloc>().validateMobile(
+                            return validateMobile(
                               value ?? "",
                             );
                           },
@@ -79,7 +79,7 @@ class LoginScreen extends StatelessWidget {
                           isPassword: true,
                           borderRadius: BorderRadius.circular(30),
                           validator: (value) {
-                            return context.read<AuthBloc>().validatePassword(
+                            return validatePassword(
                               value ?? "",
                             );
                           },
