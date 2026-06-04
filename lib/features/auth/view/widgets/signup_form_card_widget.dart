@@ -41,7 +41,7 @@ class SignUpFormCardWidget extends StatelessWidget {
               color: Colors.black.withOpacity(0.2),
               blurRadius: 1,
               spreadRadius: 1,
-              offset: const Offset(0, 0.5), // shadow direction
+              offset: const Offset(0, 0.5), 
             ),
           ],
         ),

@@ -30,46 +30,45 @@ class AttendanceRemoteDatasource {
   }
 
   Future markAttendance({
-  required String status,
-  required double latitude,
-  required double longitude,
-}) async {
-  final token = sl<StorageService>().token;
-
-  final response = await client.post(
-    Uri.parse("${ApiConstants.baseUrl}/attendance/mark"),
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer $token",
-    },
-    body: jsonEncode({
-      "attendance_status": status,
-      "latitude": latitude,
-      "longitude": longitude,
-    }),
-  );
-
-
-  if (response.statusCode == 200 || response.statusCode == 201) {
-    return jsonDecode(response.body);
-  }
-
-  throw Exception("Failed to mark attendance");
-}
-Future<AttendanceRouteModel> getRouteList() async {
+    required String status,
+    required double latitude,
+    required double longitude,
+  }) async {
     final token = sl<StorageService>().token;
-  final response = await client.get(
-    Uri.parse("${ApiConstants.baseUrl}/attendance/route-list"),
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer $token", // if required
-    },
-  );
-  if (response.statusCode == 200) {
-    return AttendanceRouteModel.fromJson(jsonDecode(response.body));
+
+    final response = await client.post(
+      Uri.parse("${ApiConstants.baseUrl}/attendance/mark"),
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer $token",
+      },
+      body: jsonEncode({
+        "attendance_status": status,
+        "latitude": latitude,
+        "longitude": longitude,
+      }),
+    );
+
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      return jsonDecode(response.body);
+    }
+
+    throw Exception("Failed to mark attendance");
   }
 
-  throw Exception("Failed to load route list");
-}
+  Future<AttendanceRouteModel> getRouteList() async {
+    final token = sl<StorageService>().token;
+    final response = await client.get(
+      Uri.parse("${ApiConstants.baseUrl}/attendance/route-list"),
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer $token",
+      },
+    );
+    if (response.statusCode == 200) {
+      return AttendanceRouteModel.fromJson(jsonDecode(response.body));
+    }
 
+    throw Exception("Failed to load route list");
+  }
 }

@@ -76,11 +76,13 @@ class FullDayLeaveScreen extends StatelessWidget {
                 SizedBox(height: 12.w),
                 customText("Leave Type"),
                 SizedBox(height: 2.w),
-                LeaveTypeDropdown(onChanged: (value) { if(value != null){
-
-      onLeaveTypeChanged(value);
-
-    }}),
+                LeaveTypeDropdown(
+                  onChanged: (value) {
+                    if (value != null) {
+                      onLeaveTypeChanged(value);
+                    }
+                  },
+                ),
               ],
             ),
           ),

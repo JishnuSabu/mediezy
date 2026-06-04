@@ -34,7 +34,6 @@ class _MyRouteMapScreenState extends State<MyRouteMapScreen> {
   @override
   void initState() {
     super.initState();
-    // Load the custom map style
     rootBundle.loadString('assets/map_style.json').then((style) {
       _mapStyle = style;
     });
@@ -68,7 +67,7 @@ class _MyRouteMapScreenState extends State<MyRouteMapScreen> {
       body: Stack(
         children: [
           GoogleMap(
-            onMapCreated: _onMapCreated, // ← apply style here
+            onMapCreated: _onMapCreated, 
             initialCameraPosition: CameraPosition(target: start, zoom: 14),
             markers: {
               Marker(
@@ -92,8 +91,8 @@ class _MyRouteMapScreenState extends State<MyRouteMapScreen> {
             },
             myLocationEnabled: true,
             zoomControlsEnabled: false,
-            mapToolbarEnabled: false, // hides the Google Maps toolbar
-            compassEnabled: false, // cleaner look
+            mapToolbarEnabled: false, 
+            compassEnabled: false, 
           ),
 
           SafeArea(

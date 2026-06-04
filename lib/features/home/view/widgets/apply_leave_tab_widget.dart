@@ -6,23 +6,18 @@ import 'package:mediezy_task/features/home/view/half_day_leave_screen.dart';
 
 class LeaveTabWidget extends StatelessWidget {
   final TextEditingController fromController;
-
   final TextEditingController toController;
-
   final TextEditingController reasonController;
-
   final Function(String) onLeaveTypeChanged;
-
-  const LeaveTabWidget({
+  final Function(String) onLeaveModeChanged;
+  late final TabController tabController;
+  LeaveTabWidget({
     super.key,
-
     required this.fromController,
-
     required this.toController,
-
     required this.reasonController,
-
     required this.onLeaveTypeChanged,
+    required this.onLeaveModeChanged,
   });
 
   @override
@@ -33,7 +28,7 @@ class LeaveTabWidget extends StatelessWidget {
         children: [
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
-            padding:  EdgeInsets.all(1.w),
+            padding: EdgeInsets.all(1.w),
             decoration: BoxDecoration(
               color: AppColors.white,
               boxShadow: [
@@ -41,7 +36,7 @@ class LeaveTabWidget extends StatelessWidget {
                   color: Colors.black.withOpacity(0.2),
                   blurRadius: 1,
                   spreadRadius: 1,
-                  offset: const Offset(0, 0.5), // shadow direction
+                  offset: const Offset(0, 0.5),
                 ),
               ],
               borderRadius: BorderRadius.circular(30),
@@ -49,6 +44,18 @@ class LeaveTabWidget extends StatelessWidget {
             child: SizedBox(
               height: 40.w,
               child: TabBar(
+                onTap: (index) {
+                  if (index == 0) {
+                    onLeaveModeChanged("full_day");
+                    onLeaveTypeChanged("");
+                  } else {
+                    onLeaveModeChanged("half_day");
+                    fromController.text = "";
+                    toController.text = "";
+                    reasonController.text = "";
+                    onLeaveTypeChanged("");
+                  }
+                },
                 dividerColor: Colors.transparent,
                 indicator: BoxDecoration(
                   gradient: const LinearGradient(
@@ -89,8 +96,11 @@ class LeaveTabWidget extends StatelessWidget {
 
                   onLeaveTypeChanged: onLeaveTypeChanged,
                 ),
-
-                HalfDayLeaveScreen(),
+                HalfDayLeaveScreen(
+                  dateController: fromController,
+                  reasonController: reasonController,
+                  onLeaveTypeChanged: onLeaveTypeChanged,
+                ),
               ],
             ),
           ),

@@ -42,8 +42,8 @@ class MonthDropdown extends StatelessWidget {
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(25.w),
               borderSide: BorderSide(
-                color: AppColors.primaryGreen, // border color
-                width: 1.5, // border thickness
+                color: AppColors.primaryGreen, 
+                width: 1.5,
               ),
             ),
         
